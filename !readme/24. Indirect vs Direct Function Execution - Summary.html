@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /*! CSS Used from: https://www.udemy.com/staticx/udemy/js/webpack/entry-main-legacy.135374463a6c57cc764a.css */
+      .pln {
+        color: #000;
+      }
+      @media screen {
+        .str {
+          color: #080;
+        }
+        .kwd {
+          color: #008;
+        }
+        .lit {
+          color: #066;
+        }
+        .pun {
+          color: #660;
+        }
+      }
+      @media print, projection {
+        .str {
+          color: #060;
+        }
+        .kwd {
+          color: #006;
+          font-weight: 700;
+        }
+        .lit {
+          color: #044;
+        }
+        .pun {
+          color: #440;
+        }
+      }
+      pre.prettyprint {
+        padding: 2px;
+        border: 1px solid #888;
+      }
+      ol.linenums {
+        margin-top: 0;
+        margin-bottom: 0;
+      }
+      li.L0,
+      li.L1,
+      li.L2 {
+        list-style-type: none;
+      }
+      li.L1 {
+        background: #eee;
+      }
+      pre.prettyprinted {
+        border: none;
+        font-size: 12px;
+        font-family: Monaco, Menlo, ubuntu mono, Consolas, source-code-pro,
+          monospace, courier new;
+        cursor: initial;
+      }
+      pre.prettyprinted,
+      pre.prettyprinted li.L1 {
+        background-color: inherit;
+      }
+      pre.prettyprinted ol.linenums {
+        list-style-type: none;
+        margin-left: 0;
+        padding-left: 0;
+      }
+      pre.prettyprinted ol.linenums > li {
+        counter-increment: customlistcounter;
+      }
+      pre.prettyprinted ol.linenums li {
+        margin-bottom: 0 !important;
+      }
+      pre.prettyprinted ol.linenums > li:before {
+        content: counter(customlistcounter) " ";
+        width: 40px;
+        display: inline-block;
+        text-align: right;
+        padding-right: 5px;
+        margin-right: 15px;
+        border-right: #dedfe0 solid 1px;
+        color: #dedfe0;
+      }
+      pre.prettyprinted ol.linenums:first-child {
+        counter-reset: customlistcounter;
+      }
+      pre.prettyprinted .pln {
+        color: #29303b;
+      }
+      pre.prettyprinted .str {
+        color: #46c28e;
+      }
+      pre.prettyprinted .kwd {
+        color: #b35a1b;
+      }
+      pre.prettyprinted .lit {
+        color: #29303b;
+      }
+      pre.prettyprinted .pun {
+        color: #29303b;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+      strong {
+        font-weight: 700;
+      }
+      code,
+      pre {
+        font-family: sfmono-regular, Consolas, liberation mono, Menlo, Courier,
+          monospace;
+        font-size: 1em;
+      }
+      code {
+        padding: 2px 4px;
+        font-size: 90%;
+        color: #ec5252;
+        background-color: #f2f3f5;
+        border: 1px solid #dedfe0;
+        border-radius: 4px;
+      }
+      pre {
+        display: block;
+        padding: 10px;
+        margin: 0 0 10.5px;
+        font-size: 14px;
+        line-height: 1.43;
+        word-break: break-all;
+        word-wrap: break-word;
+        color: #505763;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 2px;
+        overflow: auto;
+      }
+      p {
+        margin: 0 0 10.5px;
+      }
+      .a1 {
+        font-size: 36px;
+        font-weight: 400;
+      }
+      .a1 {
+        line-height: 1.287;
+      }
+      ol {
+        margin-top: 0;
+        margin-bottom: 10.5px;
+      }
+      *:focus {
+        outline: none;
+      }
+      @media print {
+        *,
+        *:before,
+        *:after {
+          background: 0 0 !important;
+          color: #14171c !important;
+          box-shadow: none !important;
+          text-shadow: none !important;
+        }
+        pre {
+          border: 1px solid #8a92a3;
+          page-break-inside: avoid;
+        }
+        p {
+          orphans: 3;
+          widows: 3;
+        }
+      }
+      .mt-space-sm {
+        margin-top: 16px;
+      }
+      .mb-space-md {
+        margin-bottom: 24px;
+      }
+      .p-space-md {
+        padding: 24px;
+      }
+      /*! CSS Used from: https://www.udemy.com/staticx/udemy/js/webpack/course-taking-app.9d698aa1fff2e0a17e07.css */
+      .article-asset--content--1dAQ9 p {
+        font-size: 18px;
+        margin: 0 0 20px;
+      }
+      .article-asset--content--1dAQ9 li {
+        margin-bottom: 10px;
+      }
+      .text-viewer--container--18Ayx {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .text-viewer--content--3hoqQ {
+        flex: 1;
+        min-width: 1px;
+        margin: 48px;
+        word-break: break-word;
+        max-width: 550px;
+      }
+    </style>
+    <style>
+      body {
+        font-family: sf pro text, -apple-system, BlinkMacSystemFont, Roboto,
+          segoe ui, Helvetica, Arial, sans-serif, apple color emoji,
+          segoe ui emoji, segoe ui symbol;
+        font-size: 15px;
+        line-height: 1.43;
+        color: #29303b;
+        background-color: #fff;
+        margin: 0;
+      }
+      html {
+        font-family: sans-serif;
+        font-size: 62.5%;
+        -webkit-font-smoothing: antialiased;
+        -ms-text-size-adjust: 100%;
+        -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+        position: relative;
+        min-height: 100%;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+      }
+    </style>
+    <style>
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 300;
+        src: local("Open Sans Light"), local("OpenSans-Light"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OX-hpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXOhv.woff)
+            format("woff");
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF,
+          U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 300;
+        src: local("Open Sans Light"), local("OpenSans-Light"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OVuhpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXOhv.woff)
+            format("woff");
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* greek-ext */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 300;
+        src: local("Open Sans Light"), local("OpenSans-Light"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXuhpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXOhv.woff)
+            format("woff");
+        unicode-range: U+1F00-1FFF;
+      }
+      /* greek */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 300;
+        src: local("Open Sans Light"), local("OpenSans-Light"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OUehpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXOhv.woff)
+            format("woff");
+        unicode-range: U+0370-03FF;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 300;
+        src: local("Open Sans Light"), local("OpenSans-Light"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXehpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXOhv.woff)
+            format("woff");
+        unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 300;
+        src: local("Open Sans Light"), local("OpenSans-Light"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXOhpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXOhv.woff)
+            format("woff");
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 300;
+        src: local("Open Sans Light"), local("OpenSans-Light"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OUuhpKKSTjw.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN_r8OXOhv.woff)
+            format("woff");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 400;
+        src: local("Open Sans Regular"), local("OpenSans-Regular"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFWJ0bf8pkAp6a.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFW50d.woff)
+            format("woff");
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF,
+          U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 400;
+        src: local("Open Sans Regular"), local("OpenSans-Regular"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFUZ0bf8pkAp6a.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFW50d.woff)
+            format("woff");
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* greek-ext */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 400;
+        src: local("Open Sans Regular"), local("OpenSans-Regular"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFWZ0bf8pkAp6a.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFW50d.woff)
+            format("woff");
+        unicode-range: U+1F00-1FFF;
+      }
+      /* greek */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 400;
+        src: local("Open Sans Regular"), local("OpenSans-Regular"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFVp0bf8pkAp6a.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFW50d.woff)
+            format("woff");
+        unicode-range: U+0370-03FF;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 400;
+        src: local("Open Sans Regular"), local("OpenSans-Regular"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFWp0bf8pkAp6a.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFW50d.woff)
+            format("woff");
+        unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 400;
+        src: local("Open Sans Regular"), local("OpenSans-Regular"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFW50bf8pkAp6a.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFW50d.woff)
+            format("woff");
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 400;
+        src: local("Open Sans Regular"), local("OpenSans-Regular"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFVZ0bf8pkAg.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem8YaGs126MiZpBA-UFW50d.woff)
+            format("woff");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 600;
+        src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOX-hpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOXOhv.woff)
+            format("woff");
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF,
+          U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 600;
+        src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOVuhpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOXOhv.woff)
+            format("woff");
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* greek-ext */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 600;
+        src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOXuhpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOXOhv.woff)
+            format("woff");
+        unicode-range: U+1F00-1FFF;
+      }
+      /* greek */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 600;
+        src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOUehpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOXOhv.woff)
+            format("woff");
+        unicode-range: U+0370-03FF;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 600;
+        src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOXehpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOXOhv.woff)
+            format("woff");
+        unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 600;
+        src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOXOhpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOXOhv.woff)
+            format("woff");
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 600;
+        src: local("Open Sans SemiBold"), local("OpenSans-SemiBold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOUuhpKKSTjw.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UNirkOXOhv.woff)
+            format("woff");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+      /* cyrillic-ext */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 700;
+        src: local("Open Sans Bold"), local("OpenSans-Bold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOX-hpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXOhv.woff)
+            format("woff");
+        unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF,
+          U+A640-A69F, U+FE2E-FE2F;
+      }
+      /* cyrillic */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 700;
+        src: local("Open Sans Bold"), local("OpenSans-Bold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOVuhpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXOhv.woff)
+            format("woff");
+        unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+      }
+      /* greek-ext */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 700;
+        src: local("Open Sans Bold"), local("OpenSans-Bold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXuhpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXOhv.woff)
+            format("woff");
+        unicode-range: U+1F00-1FFF;
+      }
+      /* greek */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 700;
+        src: local("Open Sans Bold"), local("OpenSans-Bold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOUehpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXOhv.woff)
+            format("woff");
+        unicode-range: U+0370-03FF;
+      }
+      /* vietnamese */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 700;
+        src: local("Open Sans Bold"), local("OpenSans-Bold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXehpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXOhv.woff)
+            format("woff");
+        unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+      }
+      /* latin-ext */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 700;
+        src: local("Open Sans Bold"), local("OpenSans-Bold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXOhpKKSTj5PW.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXOhv.woff)
+            format("woff");
+        unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
+          U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+      }
+      /* latin */
+      @font-face {
+        font-family: "Open Sans";
+        font-style: normal;
+        font-display: fallback;
+        font-weight: 700;
+        src: local("Open Sans Bold"), local("OpenSans-Bold"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOUuhpKKSTjw.woff2)
+            format("woff2"),
+          url(https://fonts.gstatic.com/s/opensans/v15/mem5YaGs126MiZpBA-UN7rgOXOhv.woff)
+            format("woff");
+        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6,
+          U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193,
+          U+2212, U+2215, U+FEFF, U+FFFD;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="text-viewer--container--18Ayx">
+      <div class="text-viewer--content--3hoqQ">
+        <div class="a1 mb-space-md">
+          "Indirect" vs "Direct" Function Execution - Summary
+        </div>
+        <div class="p-space-md">
+          <div
+            data-purpose="safely-set-inner-html:rich-text-viewer:html"
+            class="article-asset--content--1dAQ9"
+          >
+            <p>
+              It can be confusing to see that there seem to be two ways of
+              executing a function:
+            </p>
+            <div
+              class="ud-component--base-components--code-block"
+              ng-non-bindable=""
+            >
+              <div>
+                <pre
+                  class="prettyprint linenums prettyprinted"
+                  role="presentation"
+                  style=""
+                ><ol class="linenums"><li class="L0"><span class="kwd">function</span><span class="pln"> add</span><span class="pun">()</span><span class="pln">&nbsp;</span><span class="pun">{</span></li><li class="L1"><span class="pln">  something </span><span class="pun">=</span><span class="pln">&nbsp;someNum </span><span class="pun">+</span><span class="pln"> someOtherNum</span><span class="pun">;</span></li><li class="L2"><span class="pun">}</span></li></ol></pre>
+              </div>
+            </div>
+            <p><code>add()</code> vs <code>add</code></p>
+            <p>It's important to understand why we have these "two ways"!</p>
+            <p>
+              <strong>In general</strong>, you call a function that you defined
+              by <strong>using its name</strong> (e.g. <code>add</code>) and
+              <strong>adding parentheses</strong> (with any parameters the
+              function might need - or empty parentheses if no parameters are
+              required like in the above example).
+            </p>
+            <p>=&gt;&nbsp;<code>add()</code></p>
+            <p>
+              This is how you execute a function from your code. Whenever
+              JavaScript encounters this statement, it goes ahead and runs the
+              code in the function. Period!
+            </p>
+            <p>
+              <strong>Sometimes however</strong>, you
+              <strong>don't want to execute the function immediately</strong>.
+              You rather want to "tell JavaScript" that it should execute a
+              certain function
+              <strong>at some point in the future</strong> (e.g. when some event
+              occurs).
+            </p>
+            <p>
+              That's when you don't directly call the function but when you
+              instead just provide JavaScript with the name of the function.
+            </p>
+            <p>
+              =&gt;&nbsp;<code>someButton.addEventListener('click', add);</code>
+            </p>
+            <p>
+              This snippet would tell JavaScript:&nbsp;<em
+                >"Hey, when the button is clicked, go ahead and execute
+                add."</em
+              >.
+            </p>
+            <p>
+              <code>someButton.addEventListener('click', add());</code> would be
+              wrong.
+            </p>
+            <p>
+              Why?&nbsp;Because JavaScript would encounter that line when it
+              parses/ executes your script and register the event listener
+              AND&nbsp;immediately execute add - because you added parentheses
+              =&gt;&nbsp;That means (see above):&nbsp;<em
+                >"Please execute that function!"</em
+              >.
+            </p>
+            <p>
+              Just writing add somewhere in your code would do nothing by the
+              way:
+            </p>
+            <div
+              class="ud-component--base-components--code-block"
+              ng-non-bindable=""
+            >
+              <div>
+                <pre
+                  class="prettyprint linenums prettyprinted"
+                  role="presentation"
+                  style=""
+                ><ol class="linenums"><li class="L0"><span class="kwd">let</span><span class="pln"> someVar </span><span class="pun">=</span><span class="pln">&nbsp;</span><span class="lit">5</span><span class="pun">;</span></li><li class="L1"><span class="pln">add</span></li><li class="L2"><span class="pln">alert</span><span class="pun">(</span><span class="str">'Do something else...'</span><span class="pun">);</span></li></ol></pre>
+              </div>
+            </div>
+            <p>Why?</p>
+            <p>
+              Because you just throw the name of the function in there
+              but<strong>
+                you don't give any other information to JavaScript</strong
+              >. It basically doesn't know what to do with that name (<em
+                >"Should I&nbsp;run that when a click occurs?&nbsp;After a
+                certain amount of time?&nbsp;I don't know..."</em
+              >) and hence JavaScript kind of ignores this statement.
+            </p>
+          </div>
+        </div>
+        <div class="mt-space-sm"></div>
+      </div>
+    </div>
+  </body>
+</html>
