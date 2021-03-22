@@ -3,14 +3,30 @@ const defaultResult = 0;
 let currentResult = defaultResult;
 
 function getUserNumberInput() {
-  return parseInt(userInput.value);
+  return parseInt(usrInput.value);
+}
+
+function createAndWriteOutput(operator, resultBeforeCalc, calcNumber) {
+  const calcDescription = `${resultBeforeCalc} ${operator} ${calcNumber}`;
+  outputResult(currentResult, calcDescription);
 }
 
 function add() {
   const enteredNumber = getUserNumberInput();
-  const calcDescription = `${currentResult} + ${enteredNumber}`;
+  const intitialResult = currentResult;
   currentResult = currentResult + enteredNumber;
-  outPutResult(currentResult, calcDescription);
+  createAndWriteOutput('+', intitialResult, enteredNumber)
 }
 
-addBtn.addEventListener('click', add);
+function substract() {
+  const enteredNumber = getUserNumberInput();
+  const intitialResult = currentResult;
+  currentResult = currentResult - enteredNumber;
+  createAndWriteOutput('-', intitialResult, enteredNumber)
+}
+
+function multiply() {}
+
+function devide() {}
+
+addBtn.addEventListener("click", add);
