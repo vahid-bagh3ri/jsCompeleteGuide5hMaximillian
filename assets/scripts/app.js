@@ -16,36 +16,42 @@ function createAndWriteOutput(operator, resultBeforeCalc, calcNumber) {
 
 function add() {
   const enteredNumber = getUserNumberInput();
-  const intitialResult = currentResult;
+  const initialResult = currentResult;
   currentResult += enteredNumber;
-  createAndWriteOutput('+', intitialResult, enteredNumber)
-  logEntries.push(enteredNumber);
+  createAndWriteOutput("+", initialResult, enteredNumber);
+  const logEntry = {
+    operation: "ADD",
+    prevResult: initialResult,
+    number: enteredNumber,
+    result: currentResult,
+  };
+  logEntries.push(logEntry);
+  // console.log(logEntry.operation);
   console.log(logEntries);
 }
 
 function subtract() {
   const enteredNumber = getUserNumberInput();
-  const intitialResult = currentResult;
+  const initialResult = currentResult;
   currentResult -= enteredNumber;
-  createAndWriteOutput('-', intitialResult, enteredNumber)
+  createAndWriteOutput("-", initialResult, enteredNumber);
 }
 
 function multiply() {
   const enteredNumber = getUserNumberInput();
-  const intitialResult = currentResult;
+  const initialResult = currentResult;
   currentResult *= enteredNumber;
-  createAndWriteOutput('*', intitialResult, enteredNumber)
+  createAndWriteOutput("*", initialResult, enteredNumber);
 }
 
 function divide() {
   const enteredNumber = getUserNumberInput();
-  const intitialResult = currentResult;
+  const initialResult = currentResult;
   currentResult /= enteredNumber;
-  createAndWriteOutput('/', intitialResult, enteredNumber)
+  createAndWriteOutput("/", initialResult, enteredNumber);
 }
 
-multiplyBtn.addEventListener('click', multiply);
-addBtn.addEventListener('click', add);
-subtractBtn.addEventListener('click', subtract);
-divideBtn.addEventListener('click', divide);
-
+multiplyBtn.addEventListener("click", multiply);
+addBtn.addEventListener("click", add);
+subtractBtn.addEventListener("click", subtract);
+divideBtn.addEventListener("click", divide);
