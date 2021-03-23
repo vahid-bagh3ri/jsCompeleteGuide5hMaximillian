@@ -3,41 +3,45 @@
 // i have watched this video untill 02:52 and this repository was created after that
 var defaultResult = 0;
 var currentResult = defaultResult;
+var logEntries = []; // Gets input from input field
 
 function getUserNumberInput() {
   return parseInt(usrInput.value);
-}
+} // Generates and writes calculation log
+
 
 function createAndWriteOutput(operator, resultBeforeCalc, calcNumber) {
   var calcDescription = "".concat(resultBeforeCalc, " ").concat(operator, " ").concat(calcNumber);
-  outputResult(currentResult, calcDescription);
+  outputResult(currentResult, calcDescription); // from vendor file
 }
 
 function add() {
   var enteredNumber = getUserNumberInput();
   var intitialResult = currentResult;
-  currentResult = currentResult + enteredNumber;
+  currentResult += enteredNumber;
   createAndWriteOutput('+', intitialResult, enteredNumber);
+  logEntries.push(enteredNumber);
+  console.log(logEntries);
 }
 
 function subtract() {
   var enteredNumber = getUserNumberInput();
   var intitialResult = currentResult;
-  currentResult = currentResult - enteredNumber;
+  currentResult -= enteredNumber;
   createAndWriteOutput('-', intitialResult, enteredNumber);
 }
 
 function multiply() {
   var enteredNumber = getUserNumberInput();
   var intitialResult = currentResult;
-  currentResult = currentResult * enteredNumber;
+  currentResult *= enteredNumber;
   createAndWriteOutput('*', intitialResult, enteredNumber);
 }
 
 function divide() {
   var enteredNumber = getUserNumberInput();
   var intitialResult = currentResult;
-  currentResult = currentResult / enteredNumber;
+  currentResult /= enteredNumber;
   createAndWriteOutput('/', intitialResult, enteredNumber);
 }
 
